@@ -1,0 +1,49 @@
+<div class="text-center">
+    <h2>
+        Blob Operations
+    </h2>
+</div>
+
+<div class="container">
+    <div class="row p-3 shadow mb-5 bg-white rounded">
+        <div class="col-4  text-center">
+            Click To upload a file<i class="fa fa-2x fa-upload ml-3"></i>
+            <input type="file" class="form-control" (change)="uploadToBLob($event.target.files)">
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container shadow bg-white rounded mt-2" *ngFor="let blob of allBlobs;let i = index">
+    <div class="row">
+        <div class="col-md-3 p-2">
+            <video #elem width="250" height="150" autoplay (click)="play(elem)">
+                <!-- <source src="http://mirrors.standaloneinstaller.com/video-sample/grb_2.mp4" type="video/mp4"> -->
+                <source [src]="blob.uri" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-3"> <label>Name:</label></div>
+                <div class="col-9"> <label>{{blob.name}}</label></div>
+            </div>
+            <div class="row">
+                <div class="col-3"><label>Container Name:</label></div>
+                <div class="col-9"> <label>{{blob.containerName}}</label></div>
+            </div>
+            <div class="row">
+                <div class="col-3"> <label>Url:</label></div>
+                <div class="col-9"><label>{{blob.uri}}</label></div>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <i class="fa fa-2x fa-download mar-20" (click)="downloadFile(blob.name)"></i>
+            <i class="fa fa-2x fa-trash mar-20" (click)="deleteFile(blob.name)"></i>
+        </div>
+    </div>
+
+</div>
